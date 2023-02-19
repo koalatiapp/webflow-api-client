@@ -1,0 +1,44 @@
+{
+	"name": "koalati/webflow-api-client",
+	"description": "An API client for Webflow's REST API. Manage sites, collections, ecommerce, members, and more.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Émile Perron",
+			"email": "contact@emileperron.com",
+			"homepage": "https://github.com/emileperron"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=8.0",
+		"symfony/http-client": "^6.2"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^10.0",
+		"phpmd/phpmd": "^2.13",
+		"phpstan/phpstan": "^1.9",
+		"symplify/easy-coding-standard": "^11.2"
+	},
+	"suggest": {
+        "koalati/oauth2-webflow": "Provides the Webflow OAuth 2.0 service provider for `league/oauth2-client`."
+    },
+	"scripts": {
+		"test": "phpunit -c .config/phpunit.xml",
+		"check": "composer ecs:fix && composer phpmd && composer phpstan",
+		"ecs": "ecs --config=.config/ecs.php",
+		"ecs:fix": "ecs --config=.config/ecs.php --fix",
+		"phpstan": "phpstan analyse src --level=8",
+		"phpmd": "phpmd src text .config/phpmd.xml"
+	},
+	"autoload": {
+		"psr-4": {
+			"Koalati\\Webflow\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Koalati\\Tests\\Webflow\\": "tests/"
+		}
+	}
+}

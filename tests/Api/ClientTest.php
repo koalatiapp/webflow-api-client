@@ -1,0 +1,37 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Koalati\Tests\Webflow\Api;
+
+use Koalati\Webflow\Api\Client;
+use Symfony\Component\HttpClient\MockHttpClient;
+use Symfony\Component\HttpClient\Response\MockResponse;
+
+class ClientTest extends \PHPUnit\Framework\TestCase
+{
+	protected Client $client;
+
+	protected function setUp(): void
+	{
+		$this->client = new Client('test_token');
+
+		// Mock the API client's inner HttpClient
+		$mockResponses = include(__DIR__ . '/../sample_data.php');
+		$responseFactory = function (string $method, string $url) use ($mockResponses) {
+			$url = str_replace('https://api.webflow.com', '', $url);
+			return new MockResponse(json_encode($mockResponses[$url][$method]));
+		};
+		$reflectedProperty = new \ReflectionProperty($this->client, 'httpClient');
+		$reflectedProperty->setAccessible(true);
+		$reflectedProperty->setValue($this->client, new MockHttpClient($responseFactory, 'https://api.webflow.com'));
+	}
+
+	public function testApiCalls(): void
+	{
+		$this->expectNotToPerformAssertions();
+
+		$this->client->getAuthorizedInfo();
+		$this->client->getAuthorizedUser();
+	}
+}
