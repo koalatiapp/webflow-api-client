@@ -1,6 +1,6 @@
 # API Client for Webflow's REST API
 
-[![Latest Version](https://img.shields.io/github/release/koalatiapp/webflow-api-client.svg?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/releases)
+[![Latest Version](https://img.shields.io/packagist/v/koalati/webflow-api-client?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/koalatiapp/webflow-api-client/ci.yml?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/koalati/webflow-api-client.svg?style=flat-square)](https://packagist.org/packages/koalati/webflow-api-client)
