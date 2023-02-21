@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Koalati\Webflow\Model\Meta;
 
 use DateTimeInterface;
-use Koalati\Webflow\Model\WebflowModelInterface;
+use Koalati\Webflow\Model\AbstractWebflowModel;
 use Koalati\Webflow\Util\Date;
 
 /**
  * @see https://developers.webflow.com/reference/get-authorized-info
  */
-class Authorization implements WebflowModelInterface
+class Authorization extends AbstractWebflowModel
 {
 	/**
 	 * @param string            $id             The unique id of the authorization

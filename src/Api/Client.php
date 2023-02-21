@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Koalati\Webflow\Api;
 
-use Koalati\Webflow\Api\Module\Meta;
+use Koalati\Webflow\Api\Module\MetaEndpoints;
+use Koalati\Webflow\Api\Module\SiteEndpoints;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -16,7 +17,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  */
 class Client
 {
-	use Meta;
+	use MetaEndpoints;
+	use SiteEndpoints;
 
 	/**
 	 * Base URI for API endpoints.
@@ -24,6 +26,13 @@ class Client
 	 * @see https://developers.webflow.com/reference
 	 */
 	private const API_BASE_URI = 'https://api.webflow.com';
+
+	/**
+	 * Version number of the API to hit.
+	 *
+	 * @see https://developers.webflow.com/docs/api-version
+	 */
+	private const API_VERSION = '1.0.0';
 
 	private HttpClientInterface $httpClient;
 
@@ -35,6 +44,7 @@ class Client
 		$this->httpClient = HttpClient::createForBaseUri(self::API_BASE_URI, [
 			'headers' => [
 				'accept' => 'application/json',
+				'Accept-Version' => self::API_VERSION,
 			],
 			'auth_bearer' => $accessToken,
 			'json' => true,

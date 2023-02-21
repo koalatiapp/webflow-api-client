@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Koalati\Webflow\Model\Meta;
 
-use Koalati\Webflow\Model\WebflowModelInterface;
+use Koalati\Webflow\Model\AbstractWebflowModel;
 
 /**
  * @see https://developers.webflow.com/docs/models#authorizeduser
  */
-class AuthorizedUser implements WebflowModelInterface
+class AuthorizedUser extends AbstractWebflowModel
 {
 	/**
 	 * @param string $id		The unique id of the user

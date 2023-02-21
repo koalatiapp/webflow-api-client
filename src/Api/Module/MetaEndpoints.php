@@ -12,7 +12,7 @@ use Koalati\Webflow\Model\Meta\AuthorizedUser;
  *
  * @see https://developers.webflow.com/reference
  */
-trait Meta
+trait MetaEndpoints
 {
 	public function getAuthorizedUser(): AuthorizedUser
 	{

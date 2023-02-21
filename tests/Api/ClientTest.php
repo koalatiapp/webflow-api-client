@@ -33,5 +33,10 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
 		$this->client->getAuthorizedInfo();
 		$this->client->getAuthorizedUser();
+
+		$this->client->listSites();
+		$this->client->getSite('580e63e98c9a982ac9b8b741');
+		$this->client->listDomains('580e63e98c9a982ac9b8b741');
+		$this->client->publishSite('580e63e98c9a982ac9b8b741');
 	}
 }
