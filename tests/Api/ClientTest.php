@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Koalati\Tests\Webflow\Api;
 
 use Koalati\Webflow\Api\Client;
+use Koalati\Webflow\Model\Site\Webhook;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 
@@ -38,5 +39,10 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		$this->client->getSite('580e63e98c9a982ac9b8b741');
 		$this->client->listDomains('580e63e98c9a982ac9b8b741');
 		$this->client->publishSite('580e63e98c9a982ac9b8b741');
+		$this->client->listWebhooks('580e63e98c9a982ac9b8b741');
+		$this->client->getWebhook('580e63e98c9a982ac9b8b741', '57ca0a9e418c504a6e1acbb6');
+		$this->client->removeWebhook('580e63e98c9a982ac9b8b741', '57ca0a9e418c504a6e1acbb6');
+		$this->client->createWebhook('580e63e98c9a982ac9b8b741', new Webhook('form_submission', 'https://acme.co/webhook'));
+		
 	}
 }

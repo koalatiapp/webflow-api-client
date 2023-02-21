@@ -6,6 +6,7 @@ namespace Koalati\Webflow\Api\Module;
 
 use Koalati\Webflow\Model\Site\Domain;
 use Koalati\Webflow\Model\Site\Site;
+use Koalati\Webflow\Model\Site\Webhook;
 
 /**
  * Implementation of API calls for the "Sites" module (sites, domains, etc.).
@@ -80,5 +81,61 @@ trait SiteEndpoints
 		}
 
 		return $domains;
+	}
+
+	/**
+	 * List of all webhooks in a given site
+	 *
+	 * @return array<int,Webhook>
+	 */
+	public function listWebhooks(string|Site $siteId): array
+	{
+		$response = $this->request('GET', "/sites/{$siteId}/webhooks");
+		$webhooks = [];
+
+		foreach ($response as $webhookData) {
+			$webhooks[] = Webhook::createFromArray($webhookData);
+		}
+
+		return $webhooks;
+	}
+
+	/**
+	 * Get a site webhook
+	 */
+	public function getWebhook(string|Site $siteId, string $webhookId): Webhook
+	{
+		$response = $this->request('GET', "/sites/{$siteId}/webhooks/{$webhookId}");
+		
+		return Webhook::createFromArray($response);
+	}
+
+	/**
+	 * Create a new webhook
+	 */
+	public function createWebhook(string|Site $siteId, Webhook $webhook): Webhook
+	{
+		$payload = [
+			"triggerType" => $webhook->triggerType->__toString(),
+			"url" => $webhook->url,
+		];
+
+		if ($webhook->filter !== null) {
+			$payload['webhook'] = $webhook->filter;
+		}
+
+		$response = $this->request('POST', "/sites/{$siteId}/webhooks", $payload);
+		
+		return Webhook::createFromArray($response);
+	}
+
+	/**
+	 * Remove a webhook
+	 */
+	public function removeWebhook(string|Site $siteId, string|Webhook $webhookId): bool
+	{
+		$response = $this->request('DELETE', "/sites/{$siteId}/webhooks/{$webhookId}");
+		
+		return ($response['deleted'] ?? null) == 1;
 	}
 }

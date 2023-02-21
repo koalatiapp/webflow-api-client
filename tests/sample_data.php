@@ -134,9 +134,7 @@ return [
 				'triggerType' => 'form_submission',
 				'triggerId' => '562ac0395358780a1f5e6fbd',
 				'site' => '562ac0395358780a1f5e6fbd',
-				'filter' => [
-					'name' => 'Email Form',
-				],
+				'url' => 'https://acme.co/webhook',
 				'lastUsed' => '2016-09-06T21:12:22.148Z',
 				'createdOn' => '2016-09-02T23:26:22.241Z',
 			],
@@ -145,40 +143,33 @@ return [
 				'triggerType' => 'form_submission',
 				'triggerId' => '562ac0395358780a1f5e6fbd',
 				'site' => '562ac0395358780a1f5e6fbd',
+				'url' => 'https://acme.co/webhook',
 				'filter' => [
 					'name' => 'Email Form',
 				],
-				'lastUsed' => '2016-09-06T21:12:22.142Z',
 				'createdOn' => '2016-07-19T01:43:40.585Z',
 			],
-			[
-				'_id' => '578d85cce0c47cd2865f4cf3',
-				'triggerType' => 'form_submission',
-				'triggerId' => '562ac0395358780a1f5e6fbd',
-				'site' => '562ac0395358780a1f5e6fbd',
-				'filter' => [
-					'name' => 'Email Form',
-				],
-				'lastUsed' => '2016-09-06T21:12:22.192Z',
-				'createdOn' => '2016-07-19T01:43:40.605Z',
-			],
 		],
+		
 		'POST' => [
 			'_id' => '582266e0cd48de0f0e3c6d8b',
 			'triggerType' => 'form_submission',
 			'triggerId' => '562ac0395358780a1f5e6fbd',
-			'site' => '562ac0395358780a1f5e6fbd',
+			'url' => 'https://acme.co/webhook',
+			'site' => '580e63e98c9a982ac9b8b741',
 			'createdOn' => '2016-11-08T23:59:28.572Z',
 		],
 	],
 
-	'/sites/580e63e98c9a982ac9b8b741/webhooks/582266e0cd48de0f0e3c6d8b' => [
+	'/sites/580e63e98c9a982ac9b8b741/webhooks/57ca0a9e418c504a6e1acbb6' => [
 		'GET' => [
-			'_id' => '582266e0cd48de0f0e3c6d8b',
+			'_id' => '57ca0a9e418c504a6e1acbb6',
 			'triggerType' => 'form_submission',
 			'triggerId' => '562ac0395358780a1f5e6fbd',
 			'site' => '562ac0395358780a1f5e6fbd',
-			'createdOn' => '2016-11-08T23:59:28.572Z',
+			'url' => 'https://acme.co/webhook',
+			'lastUsed' => '2016-09-06T21:12:22.148Z',
+			'createdOn' => '2016-09-02T23:26:22.241Z',
 		],
 
 		'DELETE' => [
