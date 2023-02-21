@@ -15,7 +15,7 @@ The following issues must be completed before the API client can be considered r
 
 - [ ] [#1 feat: add models and module for CMS collections](https://github.com/koalatiapp/webflow-api-client/issues/1)
 - [ ] [#2 feat: add models and module for ecommerce](https://github.com/koalatiapp/webflow-api-client/issues/2)
-- [X] [#3 feat: add models and module for sites](https://github.com/koalatiapp/webflow-api-client/issues/3)
+- [X] ~~[#3 feat: add models and module for sites](https://github.com/koalatiapp/webflow-api-client/issues/3)~~
 - [ ] [#4 feat: add models and module for membership](https://github.com/koalatiapp/webflow-api-client/issues/4)
 
 If you would like to help, check out the [Contributing](#contributing) section below, pick an issue and submit a pull request for it!
