@@ -21,6 +21,7 @@ class Site extends AbstractWebflowModel
 	 * @param ?DateTimeInterface $lastPublished	Date site was last published
 	 * @param string $previewUrl				URL of a generated image for the given site
 	 * @param string $timezone					Site timezone set under Site Settings
+	 * @param string $database					Site database reference (internal).
 	 */
 	public function __construct(
 		public readonly string $id,
