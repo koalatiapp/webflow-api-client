@@ -13,6 +13,6 @@ class CollectionItemCreated extends TriggerType
 {
 	public function __toString()
 	{
-		return "collection_item_created";
+		return 'collection_item_created';
 	}
 }

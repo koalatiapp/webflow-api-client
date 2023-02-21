@@ -13,6 +13,6 @@ class EcommInventoryChanged extends TriggerType
 {
 	public function __toString()
 	{
-		return "ecomm_inventory_changed";
+		return 'ecomm_inventory_changed';
 	}
 }

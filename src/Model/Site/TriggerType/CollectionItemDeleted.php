@@ -13,6 +13,6 @@ class CollectionItemDeleted extends TriggerType
 {
 	public function __toString()
 	{
-		return "collection_item_deleted";
+		return 'collection_item_deleted';
 	}
 }

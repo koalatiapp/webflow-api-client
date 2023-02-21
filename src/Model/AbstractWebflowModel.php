@@ -10,6 +10,6 @@ abstract class AbstractWebflowModel implements WebflowModelInterface, Stringable
 {
 	public function __toString()
 	{
-		return $this->getId();
+		return $this->getId() ?: ('New ' . static::class);
 	}
 }

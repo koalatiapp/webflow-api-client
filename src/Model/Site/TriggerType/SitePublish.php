@@ -13,6 +13,6 @@ class SitePublish extends TriggerType
 {
 	public function __toString()
 	{
-		return "site_publish";
+		return 'site_publish';
 	}
 }

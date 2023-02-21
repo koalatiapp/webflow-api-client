@@ -13,6 +13,6 @@ class CollectionItemUnpublished extends TriggerType
 {
 	public function __toString()
 	{
-		return "collection_item_unpublished";
+		return 'collection_item_unpublished';
 	}
 }

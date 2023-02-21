@@ -30,5 +30,5 @@ interface WebflowModelInterface
 	/**
 	 * @return string ID of the Webflow resource
 	 */
-	public function getId(): string;
+	public function getId(): ?string;
 }

@@ -13,6 +13,6 @@ class FormSubmission extends TriggerType
 {
 	public function __toString()
 	{
-		return "form_submission";
+		return 'form_submission';
 	}
 }

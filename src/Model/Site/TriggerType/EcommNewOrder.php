@@ -13,6 +13,6 @@ class EcommNewOrder extends TriggerType
 {
 	public function __toString()
 	{
-		return "ecomm_new_order";
+		return 'ecomm_new_order';
 	}
 }

@@ -36,16 +36,17 @@ class Webhook extends AbstractWebflowModel
 	/**
 	 * Date trigger was last used
 	 */
-	public readonly ?DateTimeInterface $lastUsed;
+	public ?DateTimeInterface $lastUsed = null;
 
 	/**
 	 * Date trigger was created
 	 */
-	public readonly ?DateTimeInterface $createdOn;
+	public ?DateTimeInterface $createdOn = null;
 
 	/**
-	 * @param ?string url						URL to trigger with the Webhook.
-	 * @param array<string,string> filter		Filter for selecting which events you want webhooks to be triggered for.
+	 * @param string $triggerType				Name of the event that triggers the Webhook.
+	 * @param string $url						URL to trigger with the Webhook.
+	 * @param array<string,string> $filter		Filter for selecting which events you want webhooks to be triggered for.
 	 */
 	public function __construct(
 		string $triggerType,
@@ -74,8 +75,11 @@ class Webhook extends AbstractWebflowModel
 			'site' => $this->site,
 			'triggerType' => $this->triggerType,
 			'triggerId' => $this->triggerId,
-			'createdOn' => Date::format($this->createdOn),
 		];
+
+		if ($this->createdOn) {
+			$data['createDOn'] = Date::format($this->createdOn);
+		}
 
 		if ($this->lastUsed) {
 			$data['lastUsed'] = Date::format($this->lastUsed);
@@ -84,7 +88,7 @@ class Webhook extends AbstractWebflowModel
 		return $data;
 	}
 
-	public function getId(): string
+	public function getId(): ?string
 	{
 		return $this->id;
 	}

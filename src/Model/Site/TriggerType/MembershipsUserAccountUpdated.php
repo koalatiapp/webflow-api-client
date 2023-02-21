@@ -9,10 +9,10 @@ use Koalati\Webflow\Model\Site\TriggerType;
 /**
  * @see https://developers.webflow.com/docs/models#triggertype
  */
-class MembeshipsUserAccountUpdated extends TriggerType
+class MembershipsUserAccountUpdated extends TriggerType
 {
 	public function __toString()
 	{
-		return "membeships_user_account_updated";
+		return 'membeships_user_account_updated';
 	}
 }

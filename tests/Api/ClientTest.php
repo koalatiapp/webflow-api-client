@@ -43,6 +43,5 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		$this->client->getWebhook('580e63e98c9a982ac9b8b741', '57ca0a9e418c504a6e1acbb6');
 		$this->client->removeWebhook('580e63e98c9a982ac9b8b741', '57ca0a9e418c504a6e1acbb6');
 		$this->client->createWebhook('580e63e98c9a982ac9b8b741', new Webhook('form_submission', 'https://acme.co/webhook'));
-		
 	}
 }

@@ -106,7 +106,7 @@ trait SiteEndpoints
 	public function getWebhook(string|Site $siteId, string $webhookId): Webhook
 	{
 		$response = $this->request('GET', "/sites/{$siteId}/webhooks/{$webhookId}");
-		
+
 		return Webhook::createFromArray($response);
 	}
 
@@ -116,8 +116,8 @@ trait SiteEndpoints
 	public function createWebhook(string|Site $siteId, Webhook $webhook): Webhook
 	{
 		$payload = [
-			"triggerType" => $webhook->triggerType->__toString(),
-			"url" => $webhook->url,
+			'triggerType' => $webhook->triggerType->__toString(),
+			'url' => $webhook->url,
 		];
 
 		if ($webhook->filter !== null) {
@@ -125,7 +125,7 @@ trait SiteEndpoints
 		}
 
 		$response = $this->request('POST', "/sites/{$siteId}/webhooks", $payload);
-		
+
 		return Webhook::createFromArray($response);
 	}
 
@@ -135,7 +135,7 @@ trait SiteEndpoints
 	public function removeWebhook(string|Site $siteId, string|Webhook $webhookId): bool
 	{
 		$response = $this->request('DELETE', "/sites/{$siteId}/webhooks/{$webhookId}");
-		
-		return ($response['deleted'] ?? null) == 1;
+
+		return ($response['deleted'] ?? null) === 1;
 	}
 }

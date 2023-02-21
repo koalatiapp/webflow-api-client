@@ -150,7 +150,7 @@ return [
 				'createdOn' => '2016-07-19T01:43:40.585Z',
 			],
 		],
-		
+
 		'POST' => [
 			'_id' => '582266e0cd48de0f0e3c6d8b',
 			'triggerType' => 'form_submission',
