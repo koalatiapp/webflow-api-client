@@ -59,7 +59,7 @@ trait SiteEndpoints
 			}
 		}
 
-		$response = $this->request('POST', "/sites/${siteId}/publish", [
+		$response = $this->request('POST', "/sites/{$siteId}/publish", [
 			'domains' => array_values($domains),
 		]);
 

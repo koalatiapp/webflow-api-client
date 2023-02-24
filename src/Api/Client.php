@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Koalati\Webflow\Api;
 
+use Koalati\Webflow\Api\Module\CmsEndpoints;
 use Koalati\Webflow\Api\Module\MetaEndpoints;
 use Koalati\Webflow\Api\Module\SiteEndpoints;
 use Symfony\Component\HttpClient\HttpClient;
@@ -19,6 +20,7 @@ class Client
 {
 	use MetaEndpoints;
 	use SiteEndpoints;
+	use CmsEndpoints;
 
 	/**
 	 * Base URI for API endpoints.

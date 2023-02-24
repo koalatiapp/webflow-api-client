@@ -17,7 +17,7 @@ class AuthorizationTest extends \PHPUnit\Framework\TestCase
 
 	public function testToArray(): void
 	{
-		$this->assertEqualsCanonicalizing(self::sampleData(), $this->model->toArray(), "Converts back to an array matching Webflow's expected format.");
+		$this->assertEquals(self::sampleData(), $this->model->toArray(), "Converts back to an array matching Webflow's expected format.");
 	}
 
 	/**
