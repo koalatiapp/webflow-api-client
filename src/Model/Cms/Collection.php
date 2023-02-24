@@ -42,9 +42,9 @@ class Collection extends AbstractWebflowModel
 	) {
 		if ($fields !== null) {
 			foreach ($fields as $field) {
-				$fieldsIndex[$field->slug] = $this->fields[$field->slug];
-				$fieldsIndex[$field->id] = $this->fields[$field->slug];
-				$fieldsIndex[$field->name] = $this->fields[$field->slug];
+				$this->fieldsIndex[$field->slug] = &$field;
+				$this->fieldsIndex[$field->id] = &$field;
+				$this->fieldsIndex[$field->name] = &$field;
 			}
 		}
 	}
@@ -57,7 +57,7 @@ class Collection extends AbstractWebflowModel
 			$fields = [];
 
 			foreach ($data['fields'] as $fieldData) {
-				$fields[] = Field::createFromArray($fieldData);;
+				$fields[] = Field::createFromArray($fieldData);
 			}
 		}
 
@@ -92,22 +92,22 @@ class Collection extends AbstractWebflowModel
 
 	/**
 	 * Returns a collection's field by its slug, ID or name.
-	 * 
+	 *
 	 * @param string $idenfitier 	Field slug, ID or name.
-	 * 
+	 *
 	 * @throws FieldNotFoundException
 	 * @throws FieldsNotLoadedException
 	 */
 	public function getField(string $idenfitier): Field
 	{
 		if ($this->fields === null) {
-			throw new FieldsNotLoadedException($idenfitier, $this->getId());
+			throw new FieldsNotLoadedException($idenfitier, $this->getId() ?: 'no ID');
 		}
 
 		if (isset($this->fieldsIndex[$idenfitier])) {
 			return $this->fieldsIndex[$idenfitier];
 		}
 
-		throw new FieldNotFoundException($idenfitier, $this->getId());
+		throw new FieldNotFoundException($idenfitier, $this->getId() ?: 'no ID');
 	}
 }

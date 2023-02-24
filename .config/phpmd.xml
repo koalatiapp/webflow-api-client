@@ -19,6 +19,7 @@
 	</rule>
 
     <rule ref="rulesets/cleancode.xml">
+		<exclude name="ElseExpression" />
 		<exclude name="StaticAccess" />
 	</rule>
 

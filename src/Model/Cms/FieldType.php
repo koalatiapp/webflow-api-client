@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Koalati\Webflow\Model\Cms;
 
+use Exception;
+
 /**
  * @see https://developers.webflow.com/docs/models#fieldtype
  */
 enum FieldType
 {
-	
 	/** Yes/no switch used for filtering data that's displayed in your site, ex: featured */
 	case Bool;
 
@@ -57,45 +58,46 @@ enum FieldType
 
 	public static function fromString(string $fieldType): self
 	{
-		return match($fieldType) {
-			"Bool" => self::Bool,
-			"Color" => self::Color,
-			"Date" => self::Date,
-			"ExtFileRef" => self::ExtFileRef,
-			"Set" => self::Set,
-			"ImageRef" => self::ImageRef,
-			"Set" => self::Set,
-			"ItemRef" => self::ItemRef,
-			"ItemRefSet" => self::ItemRefSet,
-			"Link" => self::Link,
-			"Number" => self::Number,
-			"Option" => self::Option,
-			"PlainText" => self::PlainText,
-			"RichText" => self::RichText,
-			"User" => self::User,
-			"Video" => self::Video,
+		return match ($fieldType) {
+			'Bool' => self::Bool,
+			'Color' => self::Color,
+			'Date' => self::Date,
+			'ExtFileRef' => self::ExtFileRef,
+			'Set' => self::Set,
+			'ImageRef' => self::ImageRef,
+			'Set' => self::Set,
+			'ItemRef' => self::ItemRef,
+			'ItemRefSet' => self::ItemRefSet,
+			'Link' => self::Link,
+			'Number' => self::Number,
+			'Option' => self::Option,
+			'PlainText' => self::PlainText,
+			'RichText' => self::RichText,
+			'User' => self::User,
+			'Video' => self::Video,
+			default => throw new Exception("Invalid field type passed to FieldType::fromString(): {$fieldType}"),
 		};
 	}
 
 	public static function toString(self $fieldType): string
 	{
-		return match($fieldType) {
-			self::Bool => "Bool",
-			self::Color => "Color",
-			self::Date => "Date",
-			self::ExtFileRef => "ExtFileRef",
-			self::Set => "Set",
-			self::ImageRef => "ImageRef",
-			self::Set => "Set",
-			self::ItemRef => "ItemRef",
-			self::ItemRefSet => "ItemRefSet",
-			self::Link => "Link",
-			self::Number => "Number",
-			self::Option => "Option",
-			self::PlainText => "PlainText",
-			self::RichText => "RichText",
-			self::User => "User",
-			self::Video => "Video",
+		return match ($fieldType) {
+			self::Bool => 'Bool',
+			self::Color => 'Color',
+			self::Date => 'Date',
+			self::ExtFileRef => 'ExtFileRef',
+			self::Set => 'Set',
+			self::ImageRef => 'ImageRef',
+			self::ItemRef => 'ItemRef',
+			self::ItemRefSet => 'ItemRefSet',
+			self::Link => 'Link',
+			self::Number => 'Number',
+			self::Option => 'Option',
+			self::PlainText => 'PlainText',
+			self::RichText => 'RichText',
+			self::User => 'User',
+			self::Video => 'Video',
+			default => throw new Exception("Invalid field type passed to FieldType::toString(): {$fieldType}"),
 		};
 	}
 }

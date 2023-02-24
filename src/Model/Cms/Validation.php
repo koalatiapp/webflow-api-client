@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 namespace Koalati\Webflow\Model\Cms;
 
+use ReflectionClass;
+use ReflectionProperty;
+
 /**
  * @see https://developers.webflow.com/docs/models#validation
  */
 class Validation
 {
+	/**
+	 * @param null|array<mixed,mixed> $options
+	 * @param null|array<mixed,mixed> $pattern
+	 * @param null|array<mixed,mixed> $messages
+	 */
 	public function __construct(
 		public readonly ?int $maxLength = null,
 		public readonly ?int $minLength = null,
@@ -27,9 +35,12 @@ class Validation
 	) {
 	}
 
+	/**
+	 * @param array<string,mixed> $data
+	 */
 	public static function createFromArray(?array $data): self
 	{
-		return new Validation(
+		return new self(
 			maxLength: $data['maxLength'] ?? null,
 			minLength: $data['minLength'] ?? null,
 			minimum: $data['minimum'] ?? null,
@@ -47,17 +58,20 @@ class Validation
 		);
 	}
 
+	/**
+	 * @return array<string,mixed>
+	 */
 	public function toArray(): array
 	{
-		$reflected = new \ReflectionClass($this);
-		$properties = $reflected->getProperties(\ReflectionProperty::IS_PUBLIC);
+		$reflected = new ReflectionClass($this);
+		$properties = $reflected->getProperties(ReflectionProperty::IS_PUBLIC);
 		$data = [];
-		
+
 		foreach ($properties as $property) {
 			$propertyName = $property->getName();
 
-			if ($this->$propertyName !== null) {
-				$data[$propertyName] = $this->$propertyName;
+			if ($this->{$propertyName} !== null) {
+				$data[$propertyName] = $this->{$propertyName};
 			}
 		}
 
