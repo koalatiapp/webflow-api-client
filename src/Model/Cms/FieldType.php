@@ -97,7 +97,6 @@ enum FieldType
 			self::RichText => 'RichText',
 			self::User => 'User',
 			self::Video => 'Video',
-			default => throw new Exception("Invalid field type passed to FieldType::toString(): {$fieldType}"),
 		};
 	}
 }
