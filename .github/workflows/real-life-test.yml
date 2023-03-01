@@ -1,0 +1,28 @@
+name: Real life test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Make real Webflow API calls with the client
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        php_version: [8.2]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+      - name: Install PHP dependencies (composer install)
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php_version }}
+      - name: Run the test script
+        run: php tests/real_use_ci_test.php ${{ secrets.WEBFLOW_TEST_SITE_API_TOKEN }} ${{ github.sha }}
