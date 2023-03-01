@@ -11,6 +11,10 @@ declare(strict_types=1);
  * should be kept up to date as much as possible to ensure the API client's
  * tests remain relevant and accurate.
  *
+ * However, please note that Webflow's documented responses were invalid or
+ * inaccurate in many cases, so adjustments were made in certain response
+ * formats, based on real-life tests of the Webflow API.
+ *
  * Format:
  * - Endpoint
  * 	 - Method
@@ -401,7 +405,7 @@ return [
 					'published-on' => null,
 					'published-by' => null,
 					'_cid' => '580e63fc8c9a982ac9b8b745',
-					'_id' => '582b900cba19143b2bb8a759',
+					'_id' => '580e64008c9a982ac9b8b754',
 				],
 			],
 			'count' => 1,
@@ -432,6 +436,14 @@ return [
 			],
 			'slug' => 'exciting-post',
 			'author' => '580e640c8c9a982ac9b8b778',
+			'updated-on' => '2016-11-15T22:45:32.647Z',
+			'updated-by' => 'Person_5660c5338e9d3b0bee3b86aa',
+			'created-on' => '2016-11-15T22:45:32.647Z',
+			'created-by' => 'Person_5660c5338e9d3b0bee3b86aa',
+			'published-on' => null,
+			'published-by' => null,
+			'_cid' => '580e63fc8c9a982ac9b8b745',
+			'_id' => '580e64008c9a982ac9b8b754',
 		],
 	],
 
@@ -469,7 +481,7 @@ return [
 					'published-on' => null,
 					'published-by' => null,
 					'_cid' => '580e63fc8c9a982ac9b8b745',
-					'_id' => '582b900cba19143b2bb8a759',
+					'_id' => '580e64008c9a982ac9b8b754',
 				],
 			],
 			'count' => 1,
@@ -491,6 +503,14 @@ return [
 			],
 			'slug' => 'exciting-post',
 			'author' => '580e640c8c9a982ac9b8b778',
+			'updated-on' => '2016-11-15T22:45:32.647Z',
+			'updated-by' => 'Person_5660c5338e9d3b0bee3b86aa',
+			'created-on' => '2016-11-15T22:45:32.647Z',
+			'created-by' => 'Person_5660c5338e9d3b0bee3b86aa',
+			'published-on' => null,
+			'published-by' => null,
+			'_cid' => '580e63fc8c9a982ac9b8b745',
+			'_id' => '580e64008c9a982ac9b8b754',
 		],
 
 		'PATCH' => [
@@ -506,6 +526,14 @@ return [
 			],
 			'slug' => 'exciting-post',
 			'author' => '580e640c8c9a982ac9b8b778',
+			'updated-on' => '2016-11-15T22:45:32.647Z',
+			'updated-by' => 'Person_5660c5338e9d3b0bee3b86aa',
+			'created-on' => '2016-11-15T22:45:32.647Z',
+			'created-by' => 'Person_5660c5338e9d3b0bee3b86aa',
+			'published-on' => null,
+			'published-by' => null,
+			'_cid' => '580e63fc8c9a982ac9b8b745',
+			'_id' => '580e64008c9a982ac9b8b754',
 		],
 
 		'DELETE' => [

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Koalati\Tests\Webflow\Model\Meta;
+namespace Koalati\Tests\Webflow\Model\Cms;
 
-use Koalati\Webflow\Model\Meta\AuthorizedUser;
+use Koalati\Webflow\Model\Cms\Collection;
 
-class AuthorizedUserTest extends \PHPUnit\Framework\TestCase
+class CollectionTest extends \PHPUnit\Framework\TestCase
 {
-	protected AuthorizedUser $model;
+	protected Collection $model;
 
 	protected function setUp(): void
 	{
-		$this->model = AuthorizedUser::createFromArray(self::sampleData());
+		$this->model = Collection::createFromArray(self::sampleData());
 	}
 
 	public function testToArray(): void
@@ -28,11 +28,8 @@ class AuthorizedUserTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected static function sampleData(): array
 	{
-		return [
-			'_id' => '545bbecb7bdd6769632504a7',
-			'email' => 'some@email.com',
-			'firstName' => 'Some',
-			'lastName' => 'One',
-		];
+		$mockResponses = include(__DIR__ . '/../../sample_data.php');
+
+		return $mockResponses['/collections/580e63fc8c9a982ac9b8b745']['GET'];
 	}
 }
