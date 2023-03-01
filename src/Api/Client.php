@@ -7,6 +7,8 @@ namespace Koalati\Webflow\Api;
 use Koalati\Webflow\Api\Module\CmsEndpoints;
 use Koalati\Webflow\Api\Module\MetaEndpoints;
 use Koalati\Webflow\Api\Module\SiteEndpoints;
+use Koalati\Webflow\Exception\WebflowClientException;
+use Symfony\Component\HttpClient\Exception\ClientException;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -49,7 +51,6 @@ class Client
 				'Accept-Version' => self::API_VERSION,
 			],
 			'auth_bearer' => $accessToken,
-			'json' => true,
 		]);
 	}
 
@@ -62,11 +63,18 @@ class Client
 		$options = [];
 
 		if ($body !== null) {
-			$options['body'] = $body;
+			$options['json'] = $body;
 		}
 
 		$response = $this->httpClient->request($method, $endpoint, $options);
 
-		return $response->toArray();
+		try {
+			$responseData = $response->toArray();
+		} catch (ClientException $clientException) {
+			$responseData = $response->toArray(false);
+			throw new WebflowClientException($responseData['msg'] ?? $clientException->getMessage(), $clientException);
+		}
+
+		return $responseData;
 	}
 }
