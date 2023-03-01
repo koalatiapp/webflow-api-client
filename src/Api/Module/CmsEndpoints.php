@@ -94,6 +94,29 @@ trait CmsEndpoints
 	}
 
 	/**
+	 * Update an existing collection item. 
+	 * To upload a new image set the image URL to the corresponding item's field. 
+	 * Collection items that reuse images previously uploaded can just reference their fileId property.
+	 */
+	public function updateCollectionItem(string|Collection $collectionId, CollectionItem $item, bool $publishImmediately): CollectionItem
+	{
+		$payload = [
+			'fields' => $item->getChangeset(),
+		];
+		$url = "/collections/{$collectionId}/items/{$item}";
+
+		if ($publishImmediately) {
+			$url .= '?live=1';
+		}
+
+		/** @var array<string,mixed> */
+		$response = $this->request('PATCH', $url, $payload);
+
+		return CollectionItem::createFromArray($response);
+	}
+
+
+	/**
 	 * Remove or unpublish an item in a collection.
 	 *
 	 * @param bool $keepAsDraft	When $keepAsDraft is set to `true`, the items will be unpublished and kept as drafts instead of being deleted.

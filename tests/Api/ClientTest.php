@@ -69,6 +69,8 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 				'author' => '580e640c8c9a982ac9b8b778',
 			]
 		);
-		$this->client->createCollectionItem('580e63fc8c9a982ac9b8b745', $newItem, false);
+		$createdItem = $this->client->createCollectionItem('580e63fc8c9a982ac9b8b745', $newItem, false);
+		$createdItem->name = "Exciting blog post title!";
+		$this->client->updateCollectionItem('580e63fc8c9a982ac9b8b745', $createdItem, false);
 	}
 }

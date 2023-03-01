@@ -45,6 +45,14 @@ class CollectionItem extends AbstractWebflowModel
 	public readonly ?string $publishedBy;
 
 	/**
+	 * This contains the initial values of the item.
+	 * It is used to create a changeset when updating the item.
+	 *
+	 * @var array<string,mixed>
+	 */
+	private readonly array $initialNonMetadataFields;
+
+	/**
 	 * @param string $id					Unique identifier for the Item
 	 * @param string $name					Name given to the Item
 	 * @param string $slug					URL structure of the Item in your site. Note: Updates to an item slug will break all links referencing the old slug.
@@ -77,6 +85,8 @@ class CollectionItem extends AbstractWebflowModel
 			$this->fields['published-on'],
 			$this->fields['published-by']
 		);
+
+		$this->initialNonMetadataFields = $this->getNonMetadataFields();
 	}
 
 	/**
@@ -179,5 +189,24 @@ class CollectionItem extends AbstractWebflowModel
 		$values['_draft'] = $this->draft;
 
 		return $values;
+	}
+
+	/**
+	 * Returns the item values that have been updated since the item was first
+	 * created.
+	 *
+	 * @return array<string,mixed>
+	 */
+	public function getChangeset(): array
+	{
+		$changes = [];
+
+		foreach ($this->getNonMetadataFields() as $key => $value) {
+			if (!isset($this->initialNonMetadataFields[$key]) || $value !== $this->initialNonMetadataFields[$key]) {
+				$changes[$key] = $value;
+			}
+		}
+
+		return $changes;
 	}
 }
