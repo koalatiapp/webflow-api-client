@@ -51,6 +51,11 @@ trait SiteEndpoints
 	{
 		if (count($domains) === 0) {
 			$domains = $this->listDomains($siteId);
+
+			if (! $domains) {
+				$site = $siteId instanceof Site ? $siteId : $this->getSite($siteId);
+				$domains[] = "{$site->shortName}.webflow.io";
+			}
 		}
 
 		foreach ($domains as &$domain) {
