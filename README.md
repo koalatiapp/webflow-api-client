@@ -1,6 +1,6 @@
 # API Client for Webflow's REST API
 
-[![Latest Version](https://img.shields.io/github/release/koalatiapp/webflow-api-client.svg?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/releases)
+[![Latest Version](https://img.shields.io/packagist/v/koalati/webflow-api-client?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/koalatiapp/webflow-api-client/ci.yml?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/koalati/webflow-api-client.svg?style=flat-square)](https://packagist.org/packages/koalati/webflow-api-client)
@@ -11,11 +11,11 @@ This package provides an API client for [Webflow's REST API](https://developers.
 
 This package is still in the works.
 
-The following issues must be completed before the API client can be considered ready:
+The following issues must be completed before the API client can be considered complete and ready:
 
-- [ ] [#1 feat: add models and module for CMS collections](https://github.com/koalatiapp/webflow-api-client/issues/1)
+- [X] ~~[#1 feat: add models and module for CMS collections](https://github.com/koalatiapp/webflow-api-client/issues/1)~~
 - [ ] [#2 feat: add models and module for ecommerce](https://github.com/koalatiapp/webflow-api-client/issues/2)
-- [ ] [#3 feat: add models and module for sites](https://github.com/koalatiapp/webflow-api-client/issues/3)
+- [X] ~~[#3 feat: add models and module for sites](https://github.com/koalatiapp/webflow-api-client/issues/3)~~
 - [ ] [#4 feat: add models and module for membership](https://github.com/koalatiapp/webflow-api-client/issues/4)
 
 If you would like to help, check out the [Contributing](#contributing) section below, pick an issue and submit a pull request for it!
