@@ -11,9 +11,9 @@ This package provides an API client for [Webflow's REST API](https://developers.
 
 This package is still in the works.
 
-The following issues must be completed before the API client can be considered ready:
+The following issues must be completed before the API client can be considered complete and ready:
 
-- [ ] [#1 feat: add models and module for CMS collections](https://github.com/koalatiapp/webflow-api-client/issues/1)
+- [X] ~~[#1 feat: add models and module for CMS collections](https://github.com/koalatiapp/webflow-api-client/issues/1)~~
 - [ ] [#2 feat: add models and module for ecommerce](https://github.com/koalatiapp/webflow-api-client/issues/2)
 - [X] ~~[#3 feat: add models and module for sites](https://github.com/koalatiapp/webflow-api-client/issues/3)~~
 - [ ] [#4 feat: add models and module for membership](https://github.com/koalatiapp/webflow-api-client/issues/4)
