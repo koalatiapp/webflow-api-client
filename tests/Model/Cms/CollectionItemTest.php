@@ -36,15 +36,20 @@ class CollectionItemTest extends \PHPUnit\Framework\TestCase
 				],
 				'slug' => 'exciting-post',
 				'author' => '580e640c8c9a982ac9b8b778',
-			], $this->model->getNonMetadataFields());
+			],
+			$this->model->getNonMetadataFields()
+		);
 	}
 
 	public function testGetChangeset(): void
 	{
-		$this->model->name = "Updated";
+		$this->model->name = 'Updated';
 		$this->model->draft = true;
-		
-		$this->assertEquals(["name" => "Updated", "_draft" => true], $this->model->getChangeset());
+
+		$this->assertEquals([
+			'name' => 'Updated',
+			'_draft' => true,
+		], $this->model->getChangeset());
 	}
 
 	/**

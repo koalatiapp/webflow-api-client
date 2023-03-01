@@ -10,9 +10,9 @@ declare(strict_types=1);
  * These examples come straight from Webflow's own reference document, and
  * should be kept up to date as much as possible to ensure the API client's
  * tests remain relevant and accurate.
- * 
+ *
  * However, please note that Webflow's documented responses were invalid or
- * inaccurate in many cases, so adjustments were made in certain response 
+ * inaccurate in many cases, so adjustments were made in certain response
  * formats, based on real-life tests of the Webflow API.
  *
  * Format:

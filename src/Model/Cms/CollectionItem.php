@@ -202,7 +202,7 @@ class CollectionItem extends AbstractWebflowModel
 		$changes = [];
 
 		foreach ($this->getNonMetadataFields() as $key => $value) {
-			if (!isset($this->initialNonMetadataFields[$key]) || $value !== $this->initialNonMetadataFields[$key]) {
+			if (! isset($this->initialNonMetadataFields[$key]) || $value !== $this->initialNonMetadataFields[$key]) {
 				$changes[$key] = $value;
 			}
 		}

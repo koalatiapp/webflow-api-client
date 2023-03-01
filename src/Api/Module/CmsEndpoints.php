@@ -94,8 +94,8 @@ trait CmsEndpoints
 	}
 
 	/**
-	 * Update an existing collection item. 
-	 * To upload a new image set the image URL to the corresponding item's field. 
+	 * Update an existing collection item.
+	 * To upload a new image set the image URL to the corresponding item's field.
 	 * Collection items that reuse images previously uploaded can just reference their fileId property.
 	 */
 	public function updateCollectionItem(string|Collection $collectionId, CollectionItem $item, bool $publishImmediately): CollectionItem
@@ -114,7 +114,6 @@ trait CmsEndpoints
 
 		return CollectionItem::createFromArray($response);
 	}
-
 
 	/**
 	 * Remove or unpublish an item in a collection.
