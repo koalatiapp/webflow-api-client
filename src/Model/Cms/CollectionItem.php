@@ -50,7 +50,7 @@ class CollectionItem extends AbstractWebflowModel
 	 *
 	 * @var array<string,mixed>
 	 */
-	private readonly array $initialNonMetadataFields;
+	private readonly array $initialFieldValues;
 
 	/**
 	 * @param string $id					Unique identifier for the Item
@@ -86,7 +86,7 @@ class CollectionItem extends AbstractWebflowModel
 			$this->fields['published-by']
 		);
 
-		$this->initialNonMetadataFields = $this->getNonMetadataFields();
+		$this->initialFieldValues = $this->getNonMetadataFields();
 	}
 
 	/**
@@ -202,7 +202,7 @@ class CollectionItem extends AbstractWebflowModel
 		$changes = [];
 
 		foreach ($this->getNonMetadataFields() as $key => $value) {
-			if (! isset($this->initialNonMetadataFields[$key]) || $value !== $this->initialNonMetadataFields[$key]) {
+			if (! isset($this->initialFieldValues[$key]) || $value !== $this->initialFieldValues[$key]) {
 				$changes[$key] = $value;
 			}
 		}
