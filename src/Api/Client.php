@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Koalati\Webflow\Api;
 
 use Koalati\Webflow\Api\Module\CmsEndpoints;
+use Koalati\Webflow\Api\Module\MembershipEndpoints;
 use Koalati\Webflow\Api\Module\MetaEndpoints;
 use Koalati\Webflow\Api\Module\SiteEndpoints;
 use Koalati\Webflow\Exception\WebflowClientException;
@@ -23,6 +24,7 @@ class Client
 	use MetaEndpoints;
 	use SiteEndpoints;
 	use CmsEndpoints;
+	use MembershipEndpoints;
 
 	/**
 	 * Base URI for API endpoints.
