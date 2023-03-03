@@ -2429,16 +2429,19 @@ return [
 		],
 
 		'PATCH' => [
-			'_id' => '6287ec36a841b25637c663df',
-			'createdOn' => '2022-05-20T13:46:12.093Z',
-			'updatedOn' => '2022-05-20T13:46:12.093Z',
-			'emailVerified' => true,
-			'status' => 'verified',
-			'data' => [
-				'accept-privacy' => false,
-				'accept-communications' => false,
-				'email' => 'Some.One@home.com',
-				'name' => 'John Doe',
+			'valid' => true,
+			'user' => [
+				'_id' => '6287ec36a841b25637c663df',
+				'createdOn' => '2022-05-20T13:46:12.093Z',
+				'updatedOn' => '2022-05-20T13:46:12.093Z',
+				'emailVerified' => true,
+				'status' => 'verified',
+				'data' => [
+					'accept-privacy' => false,
+					'accept-communications' => false,
+					'email' => 'Some.One@home.com',
+					'name' => 'John Doe',
+				],
 			],
 		],
 
