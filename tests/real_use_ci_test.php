@@ -54,5 +54,12 @@ $deletionTestItem = new CollectionItem(
 $deletionTestItem = $client->createCollectionItem($testCollection, $deletionTestItem, true);
 $client->removeCollectionItem($testCollection, $deletionTestItem, false);
 
+// Membership user tests
+$accessGroups = $client->listAccessGroups($testSite);
+$users = $client->listUsers($testSite);
+$user = $client->getUser($testSite, $users[0]->id);
+$user->setData('country', $user->data['country'] === 'Canada' ? 'Wonderland' : 'Canada');
+$client->updateUser($testSite, $user);
+
 // Publish the site
 $client->publishSite($testSite);

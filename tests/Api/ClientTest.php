@@ -33,9 +33,11 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->expectNotToPerformAssertions();
 
+		// Meta
 		$this->client->getAuthorizedInfo();
 		$this->client->getAuthorizedUser();
 
+		// Site
 		$this->client->listSites();
 		$this->client->getSite('580e63e98c9a982ac9b8b741');
 		$this->client->listDomains('580e63e98c9a982ac9b8b741');
@@ -45,6 +47,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		$this->client->removeWebhook('580e63e98c9a982ac9b8b741', '57ca0a9e418c504a6e1acbb6');
 		$this->client->createWebhook('580e63e98c9a982ac9b8b741', new Webhook('form_submission', 'https://acme.co/webhook'));
 
+		// CMS
 		$this->client->listCollections('580e63e98c9a982ac9b8b741');
 		$this->client->getCollection('580e63fc8c9a982ac9b8b745');
 		$this->client->listCollectionItems('580e63fc8c9a982ac9b8b745');
@@ -72,5 +75,14 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		$createdItem = $this->client->createCollectionItem('580e63fc8c9a982ac9b8b745', $newItem, false);
 		$createdItem->name = 'Exciting blog post title!';
 		$this->client->updateCollectionItem('580e63fc8c9a982ac9b8b745', $createdItem, false);
+
+		// Membership
+		$this->client->listUsers('580e63e98c9a982ac9b8b741');
+		$user = $this->client->getUser('580e63e98c9a982ac9b8b741', '6287ec36a841b25637c663df');
+		$user->setData('name', 'John Doe');
+		$this->client->updateUser('580e63e98c9a982ac9b8b741', $user);
+		$this->client->deleteUser('580e63e98c9a982ac9b8b741', $user);
+		$this->client->inviteUser('580e63e98c9a982ac9b8b741', 'Some.One@home.com', ['jo']);
+		$this->client->listAccessGroups('580e63e98c9a982ac9b8b741');
 	}
 }

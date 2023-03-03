@@ -11,7 +11,7 @@ use Koalati\Webflow\Model\Cms\CollectionItem;
 use Koalati\Webflow\Model\Site\Site;
 
 /**
- * Implementation of API calls for the "Sites" module (sites, domains, etc.).
+ * Implementation of API calls for the "CMS" module (collections, items, etc.).
  *
  * @see https://developers.webflow.com/reference
  */

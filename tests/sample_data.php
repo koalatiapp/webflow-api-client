@@ -2413,7 +2413,7 @@ return [
 		],
 	],
 
-	'/sites/580e63e98c9a982ac9b8b741/users/580e63e98c9a982ac9b8b741' => [
+	'/sites/580e63e98c9a982ac9b8b741/users/6287ec36a841b25637c663df' => [
 		'GET' => [
 			'_id' => '6287ec36a841b25637c663df',
 			'createdOn' => '2022-05-20T13:46:12.093Z',
@@ -2438,12 +2438,46 @@ return [
 				'accept-privacy' => false,
 				'accept-communications' => false,
 				'email' => 'Some.One@home.com',
-				'name' => 'Some One',
+				'name' => 'John Doe',
 			],
 		],
 
 		'DELETE' => [
 			'deleted' => 1,
+		],
+	],
+
+	'/sites/580e63e98c9a982ac9b8b741/users/invite' => [
+		'POST' => [
+			'_id' => '6287ec36a841b25637c663df',
+			'createdOn' => '2022-05-20T13:46:12.093Z',
+			'updatedOn' => '2022-05-20T13:46:12.093Z',
+			'emailVerified' => true,
+			'status' => 'verified',
+			'data' => [
+				'accept-privacy' => false,
+				'accept-communications' => false,
+				'email' => 'Some.One@home.com',
+				'name' => 'Some One',
+			],
+		],
+	],
+
+	'/sites/580e63e98c9a982ac9b8b741/accessgroups' => [
+		'GET' => [
+			'accessGroups' => [
+				[
+					'_id' => '62be58d404be8a6cc900c081',
+					'name' => 'Webflowers',
+					'shortId' => 'jo',
+					'slug' => 'webflowers',
+					'createdOn' => '2022-08-01T19:41:48.349Z',
+				],
+			],
+			'count' => 1,
+			'limit' => 10,
+			'offset' => 0,
+			'total' => 1,
 		],
 	],
 ];

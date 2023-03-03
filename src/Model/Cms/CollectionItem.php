@@ -192,8 +192,8 @@ class CollectionItem extends AbstractWebflowModel
 	}
 
 	/**
-	 * Returns the item values that have been updated since the item was first
-	 * created.
+	 * Returns the item values that have been updated since the user was
+	 * initialized.
 	 *
 	 * @return array<string,mixed>
 	 */
