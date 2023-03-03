@@ -85,7 +85,7 @@ trait MembershipEndpoints
 		$response = $this->request('POST', "/sites/{$siteId}/users/invite", [
 			'email' => $email,
 			'accessGroups' => array_map(
-				fn (string|AccessGroup $group) => (string) $group,
+				fn (string|AccessGroup $group) => is_string($group) ? $group : $group->slug,
 				$accessGroups
 			),
 		]);
