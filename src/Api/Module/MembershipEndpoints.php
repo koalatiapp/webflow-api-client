@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Koalati\Webflow\Api\Module;
 
 use Koalati\Webflow\Exception\CannotUpdateNonExistingModelException;
+use Koalati\Webflow\Exception\InvalidUserUpdateException;
 use Koalati\Webflow\Model\Membership\AccessGroup;
 use Koalati\Webflow\Model\Membership\User;
 use Koalati\Webflow\Model\Site\Site;
@@ -50,6 +51,9 @@ trait MembershipEndpoints
 	 * The `email` and `password` fields cannot be updated using this endpoint.
 	 *
 	 * @return User An updated user instance
+	 *
+	 * @throws CannotUpdateNonExistingModelException
+	 * @throws InvalidUserUpdateException
 	 */
 	public function updateUser(string|Site $siteId, User $user): User
 	{
@@ -62,7 +66,11 @@ trait MembershipEndpoints
 
 		$response = $this->request('PATCH', "/sites/{$siteId}/users/{$user}", $payload);
 
-		return User::createFromArray($response);
+		if (! $response['valid']) {
+			throw new InvalidUserUpdateException($user);
+		}
+
+		return User::createFromArray($response['user']);
 	}
 
 	/**

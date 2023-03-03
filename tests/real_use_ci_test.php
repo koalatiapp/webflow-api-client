@@ -58,7 +58,7 @@ $client->removeCollectionItem($testCollection, $deletionTestItem, false);
 $accessGroups = $client->listAccessGroups($testSite);
 $users = $client->listUsers($testSite);
 $user = $client->getUser($testSite, $users[0]->id);
-$user->setData('country', $user->data['country'] === 'Canada' ? 'Wonderland' : 'Canada');
+$user->setData('country', ($user->data['country'] ?? null) === 'Canada' ? 'Wonderland' : 'Canada');
 $client->updateUser($testSite, $user);
 
 // Publish the site
