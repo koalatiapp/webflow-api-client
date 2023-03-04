@@ -80,7 +80,7 @@ class PaginatedList implements Iterator
 	}
 
 	/**
-	 * @return T
+	 * @return ?T
 	 */
 	public function first(): mixed
 	{
@@ -89,7 +89,7 @@ class PaginatedList implements Iterator
 
 	public function current(): mixed
 	{
-		$indexWithinPage = max(1, ($this->currentItemIndex % self::LIMIT)) - 1;
+		$indexWithinPage = $this->currentItemIndex % self::LIMIT;
 		$this->loadCurrentPage();
 
 		return $this->pages[$this->getCurrentPageIndex()][$indexWithinPage];
