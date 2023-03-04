@@ -15,7 +15,7 @@ interface WebflowModelInterface
 	 * Creates an instance of the model from an array of data, such as an API
 	 * response's body.
 	 *
-	 * @param array<mixed,mixed> $data
+	 * @param array<string,mixed> $data
 	 */
 	public static function createFromArray(array $data): self;
 

@@ -38,6 +38,12 @@ $createdItem = $client->createCollectionItem($testCollection, $newItem, true);
 $createdItem->name .= ' :)';
 $client->updateCollectionItem($testCollection, $createdItem, true);
 
+// Loop over items to test paginated list
+$items = $client->listCollectionItems($testCollection);
+foreach ($items as $item) {
+	// Nothing to do
+}
+
 // Create a duplicate, then delete it
 $deletionTestItem = new CollectionItem(
 	name: 'Deletion Test Item',
@@ -57,7 +63,7 @@ $client->removeCollectionItem($testCollection, $deletionTestItem, false);
 // Membership user tests
 $accessGroups = $client->listAccessGroups();
 $users = $client->listUsers();
-$user = $client->getUser($users[0]->id);
+$user = $client->getUser($users->first()->id);
 $user->setData('country', ($user->data['country'] ?? null) === 'Canada' ? 'Wonderland' : 'Canada');
 $client->updateUser($user);
 

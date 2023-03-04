@@ -6,6 +6,8 @@ namespace Koalati\Tests\Webflow\Api;
 
 use Koalati\Webflow\Api\Client;
 use Koalati\Webflow\Model\Cms\CollectionItem;
+use Koalati\Webflow\Model\Membership\AccessGroup;
+use Koalati\Webflow\Model\Membership\User;
 use Koalati\Webflow\Model\Site\Webhook;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
@@ -20,6 +22,9 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
 		// Mock the API client's inner HttpClient
 		$mockResponses = include(__DIR__ . '/../sample_data.php');
+		$mockResponses['/sites/paginationtest/accessgroups'] = $this->generateRandomAccessGroupDataForPaginationTest(0, 205);
+		$mockResponses['/sites/paginationtest/accessgroups?offset=100'] = $this->generateRandomAccessGroupDataForPaginationTest(100, 205);
+		$mockResponses['/sites/paginationtest/accessgroups?offset=200'] = $this->generateRandomAccessGroupDataForPaginationTest(200, 205);
 		$responseFactory = function (string $method, string $url) use ($mockResponses) {
 			$url = str_replace('https://api.webflow.com', '', $url);
 			return new MockResponse(json_encode($mockResponses[$url][$method]));
@@ -31,8 +36,6 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
 	public function testApiCalls(): void
 	{
-		$this->expectNotToPerformAssertions();
-
 		// Meta
 		$this->client->getAuthorizedInfo();
 		$this->client->getAuthorizedUser();
@@ -50,7 +53,10 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		// CMS
 		$this->client->listCollections('580e63e98c9a982ac9b8b741');
 		$this->client->getCollection('580e63fc8c9a982ac9b8b745');
-		$this->client->listCollectionItems('580e63fc8c9a982ac9b8b745');
+		$items = $this->client->listCollectionItems('580e63fc8c9a982ac9b8b745');
+		foreach ($items as $item) {
+			$this->assertInstanceOf(CollectionItem::class, $item);
+		}
 		$this->client->getCollectionItem('580e63fc8c9a982ac9b8b745', '580e64008c9a982ac9b8b754');
 		$this->client->removeCollectionItem('580e63fc8c9a982ac9b8b745', '580e64008c9a982ac9b8b754', false);
 		$this->client->removeCollectionItems('580e63fc8c9a982ac9b8b745', ['62aa37923cf7a9de1ca4469c', '62aa37923cf7a9de1ca44697', '62aa37923cf7a9de1ca44696'], false);
@@ -77,12 +83,52 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		$this->client->updateCollectionItem('580e63fc8c9a982ac9b8b745', $createdItem, false);
 
 		// Membership
-		$this->client->listUsers('580e63e98c9a982ac9b8b741');
+		$users = $this->client->listUsers('580e63e98c9a982ac9b8b741');
+		foreach ($users as $user) {
+			$this->assertInstanceOf(User::class, $user);
+		}
 		$user = $this->client->getUser('580e63e98c9a982ac9b8b741', '6287ec36a841b25637c663df');
 		$user->setData('name', 'John Doe');
 		$this->client->updateUser('580e63e98c9a982ac9b8b741', $user);
 		$this->client->deleteUser('580e63e98c9a982ac9b8b741', $user);
 		$this->client->inviteUser('580e63e98c9a982ac9b8b741', 'Some.One@home.com', ['jo']);
-		$this->client->listAccessGroups('580e63e98c9a982ac9b8b741');
+		$accessGroups = $this->client->listAccessGroups('580e63e98c9a982ac9b8b741');
+		foreach ($accessGroups as $accessGroup) {
+			$this->assertInstanceOf(AccessGroup::class, $accessGroup);
+		}
+	}
+
+	public function testPagination(): void
+	{
+		$paginatedList = $this->client->listAccessGroups('paginationtest');
+		$rawResults = $paginatedList->fetchAll();
+		$this->assertIsArray($rawResults);
+		$this->assertCount(205, $rawResults, 'Total result count matches when using fetchAll');
+	}
+
+	protected function generateRandomAccessGroupDataForPaginationTest(int $offset, int $total): array
+	{
+		$data = [];
+		$count = min(100, $total - $offset);
+
+		for ($i = 0; $i < $count; $i++) {
+			$data[] = [
+				'_id' => uniqid(),
+				'name' => 'Some Group',
+				'shortId' => 'sg',
+				'slug' => 'some-group',
+				'createdOn' => '2022-08-01T19:41:48.349Z',
+			];
+		}
+
+		return [
+			'GET' => [
+				'accessGroups' => $data,
+				'count' => $count,
+				'limit' => 100,
+				'offset' => $offset,
+				'total' => $total,
+			],
+		];
 	}
 }

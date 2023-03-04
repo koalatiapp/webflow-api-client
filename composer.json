@@ -27,7 +27,7 @@
 	"scripts": {
 		"test": "phpunit -c .config/phpunit.xml",
 		"check": "composer rector && composer ecs:fix && composer phpmd && composer phpstan",
-		"rector": "rector -c .config/rector.php",
+		"rector": "rector -c .config/rector.php --clear-cache",
 		"ecs": "ecs --config=.config/ecs.php",
 		"ecs:fix": "ecs --config=.config/ecs.php --fix",
 		"phpstan": "phpstan analyse src --level=8",

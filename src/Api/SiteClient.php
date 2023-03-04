@@ -17,6 +17,7 @@ use Koalati\Webflow\Model\Meta\AuthorizedUser;
 use Koalati\Webflow\Model\Site\Domain;
 use Koalati\Webflow\Model\Site\Site;
 use Koalati\Webflow\Model\Site\Webhook;
+use Koalati\Webflow\Util\PaginatedList;
 
 /**
  * A Client that wraps `Koalati\Webflow\Api\Client` to simplify method calls
@@ -29,6 +30,7 @@ use Koalati\Webflow\Model\Site\Webhook;
  * @see https://developers.webflow.com/docs/api-overview
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class SiteClient
 {
@@ -138,7 +140,7 @@ class SiteClient
 	/**
 	 * List of all collections in a given site.
 	 *
-	 * @return array<int,Collection>
+	 * @return array<int, Collection>
 	 */
 	public function listCollections(): array
 	{
@@ -156,9 +158,9 @@ class SiteClient
 	/**
 	 * Get all items for a collection
 	 *
-	 * @return array<int,CollectionItem>
+	 * @return PaginatedList<CollectionItem>
 	 */
-	public function listCollectionItems(Collection|string $collectionId): array
+	public function listCollectionItems(Collection|string $collectionId): PaginatedList
 	{
 		return $this->client->listCollectionItems($collectionId);
 	}
@@ -202,7 +204,7 @@ class SiteClient
 	/**
 	 * Remove or unpublish items in a collection.
 	 *
-	 * @param array<int,string|CollectionItem> $itemIds
+	 * @param array<int, (string | CollectionItem)> $itemIds
 	 * @param bool $keepAsDraft	When $keepAsDraft is set to `true`, the items will be unpublished and kept as drafts instead of being deleted.
 	 * @throws CollectionItemDeletionException
 	 */
@@ -214,7 +216,7 @@ class SiteClient
 	/**
 	 * Publish items in a Collection.
 	 *
-	 * @param array<int,string|CollectionItem> $itemIds
+	 * @param array<int, (string | CollectionItem)> $itemIds
 	 *
 	 * @throws CollectionItemPublishingException
 	 */
@@ -226,9 +228,9 @@ class SiteClient
 	/**
 	 * Get a list of users for a site
 	 *
-	 * @return array<int,User>
+	 * @return PaginatedList<User>
 	 */
-	public function listUsers(): array
+	public function listUsers(): PaginatedList
 	{
 		return $this->client->listUsers($this->siteId);
 	}
@@ -276,9 +278,9 @@ class SiteClient
 	/**
 	 * Get a list of access groups for a site
 	 *
-	 * @return array<int,AccessGroup>
+	 * @return PaginatedList<AccessGroup>
 	 */
-	public function listAccessGroups(): array
+	public function listAccessGroups(): PaginatedList
 	{
 		return $this->client->listAccessGroups($this->siteId);
 	}

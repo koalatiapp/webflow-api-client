@@ -411,7 +411,7 @@ return [
 			'count' => 1,
 			'limit' => 1,
 			'offset' => 0,
-			'total' => 5,
+			'total' => 1,
 		],
 
 		'DELETE' => [
@@ -2409,7 +2409,7 @@ return [
 			'count' => 5,
 			'limit' => 5,
 			'offset' => 0,
-			'total' => 201,
+			'total' => 5,
 		],
 	],
 
@@ -2467,6 +2467,24 @@ return [
 	],
 
 	'/sites/580e63e98c9a982ac9b8b741/accessgroups' => [
+		'GET' => [
+			'accessGroups' => [
+				[
+					'_id' => '62be58d404be8a6cc900c081',
+					'name' => 'Webflowers',
+					'shortId' => 'jo',
+					'slug' => 'webflowers',
+					'createdOn' => '2022-08-01T19:41:48.349Z',
+				],
+			],
+			'count' => 1,
+			'limit' => 10,
+			'offset' => 0,
+			'total' => 1,
+		],
+	],
+
+	'/sites/paginationtest/accessgroups' => [
 		'GET' => [
 			'accessGroups' => [
 				[
