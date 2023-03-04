@@ -231,11 +231,14 @@ class SiteClient
 	/**
 	 * Get a list of users for a site
 	 *
+	 * @param string $sortBy        Defines the field by which to sort the results.
+	 * 								Must be a `User::SORT_BY_` constant.
+	 * @param string $sortDirection	Either `ASC` or `DESC`.
 	 * @return PaginatedList<User>
 	 */
-	public function listUsers(): PaginatedList
+	public function listUsers(string $sortBy = 'CreatedOn', string $sortDirection = 'ASC'): PaginatedList
 	{
-		return $this->client->listUsers($this->siteId);
+		return $this->client->listUsers($this->siteId, $sortBy, $sortDirection);
 	}
 
 	/**
