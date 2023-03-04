@@ -67,6 +67,10 @@ trait MembershipEndpoints
 		$payload = $user->getChangeset();
 		unset($payload['email'], $payload['password']);
 
+		if (! $payload) {
+			return $user;
+		}
+
 		$response = $this->request('PATCH', "/sites/{$siteId}/users/{$user}", $payload);
 
 		if (! $response['valid']) {
