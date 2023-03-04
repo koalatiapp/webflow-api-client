@@ -2,7 +2,8 @@
 
 [![Latest Version](https://img.shields.io/packagist/v/koalati/webflow-api-client?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/koalatiapp/webflow-api-client/ci.yml?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/koalatiapp/webflow-api-client/ci.yml?style=flat-square)](https://github.com/koalatiapp/webflow-api-client/actions/workflows/ci.yml)
+[![Latest real-life test](https://img.shields.io/github/actions/workflow/status/koalatiapp/webflow-api-client/real-life-test.yml?style=flat-square&label=Live%20API%20test&logo=webflow)](https://github.com/koalatiapp/webflow-api-client/actions/workflows/real-life-test.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/koalati/webflow-api-client.svg?style=flat-square)](https://packagist.org/packages/koalati/webflow-api-client)
 
 This package provides an API client for [Webflow's REST API](https://developers.webflow.com/reference).

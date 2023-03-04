@@ -69,3 +69,6 @@ $client->updateUser($user);
 
 // Publish the site
 $client->publishSite();
+
+echo "Webflow site updated successfully.";
+echo "View it here: https://webflow-api-client-testing-site.webflow.io/";
