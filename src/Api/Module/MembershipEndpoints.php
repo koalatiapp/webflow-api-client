@@ -9,6 +9,7 @@ use Koalati\Webflow\Exception\InvalidUserUpdateException;
 use Koalati\Webflow\Model\Membership\AccessGroup;
 use Koalati\Webflow\Model\Membership\User;
 use Koalati\Webflow\Model\Site\Site;
+use Koalati\Webflow\Util\PaginatedList;
 
 /**
  * Implementation of API calls for the "Membership" module (users, access groups).
@@ -20,20 +21,11 @@ trait MembershipEndpoints
 	/**
 	 * Get a list of users for a site
 	 *
-	 * @return array<int,User>
+	 * @return PaginatedList<User>
 	 */
-	public function listUsers(string|Site $siteId): array
+	public function listUsers(string|Site $siteId): PaginatedList
 	{
-		$response = $this->request('GET', "/sites/{$siteId}/users");
-		$users = [];
-
-		foreach ($response['users'] as $userData) {
-			$users[] = User::createFromArray($userData);
-		}
-
-		// @TODO: add pagination support - this currently only fetches the first page
-
-		return $users;
+		return $this->requestWithPagination(User::class, "/sites/{$siteId}/users");
 	}
 
 	/**
@@ -104,19 +96,10 @@ trait MembershipEndpoints
 	/**
 	 * Get a list of access groups for a site
 	 *
-	 * @return array<int,AccessGroup>
+	 * @return PaginatedList<AccessGroup>
 	 */
-	public function listAccessGroups(string|Site $siteId): array
+	public function listAccessGroups(string|Site $siteId): PaginatedList
 	{
-		$response = $this->request('GET', "/sites/{$siteId}/accessgroups");
-		$accessGroups = [];
-
-		foreach ($response['accessGroups'] as $accessGroupData) {
-			$accessGroups[] = AccessGroup::createFromArray($accessGroupData);
-		}
-
-		// @TODO: add pagination support - this currently only fetches the first page
-
-		return $accessGroups;
+		return $this->requestWithPagination(AccessGroup::class, "/sites/{$siteId}/accessgroups");
 	}
 }

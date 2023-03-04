@@ -9,6 +9,7 @@ use Koalati\Webflow\Exception\CollectionItemPublishingException;
 use Koalati\Webflow\Model\Cms\Collection;
 use Koalati\Webflow\Model\Cms\CollectionItem;
 use Koalati\Webflow\Model\Site\Site;
+use Koalati\Webflow\Util\PaginatedList;
 
 /**
  * Implementation of API calls for the "CMS" module (collections, items, etc.).
@@ -20,7 +21,7 @@ trait CmsEndpoints
 	/**
 	 * List of all collections in a given site.
 	 *
-	 * @return array<int,Collection>
+	 * @return array<int, Collection>
 	 */
 	public function listCollections(string|Site $siteId): array
 	{
@@ -47,20 +48,11 @@ trait CmsEndpoints
 	/**
 	 * Get all items for a collection
 	 *
-	 * @return array<int,CollectionItem>
+	 * @return PaginatedList<CollectionItem>
 	 */
-	public function listCollectionItems(string|Collection $collectionId): array
+	public function listCollectionItems(string|Collection $collectionId): PaginatedList
 	{
-		$response = $this->request('GET', "/collections/{$collectionId}/items");
-		$items = [];
-
-		foreach ($response['items'] as $itemData) {
-			$items[] = CollectionItem::createFromArray($itemData);
-		}
-
-		// @TODO: add pagination support - this currently only fetches the first page
-
-		return $items;
+		return $this->requestWithPagination(CollectionItem::class, "/collections/{$collectionId}/items");
 	}
 
 	/**
@@ -138,7 +130,7 @@ trait CmsEndpoints
 	/**
 	 * Remove or unpublish items in a collection.
 	 *
-	 * @param array<int,string|CollectionItem> $itemIds
+	 * @param array<int, (string | CollectionItem)> $itemIds
 	 * @param bool $keepAsDraft	When $keepAsDraft is set to `true`, the items will be unpublished and kept as drafts instead of being deleted.
 	 * @throws CollectionItemDeletionException
 	 */
@@ -171,7 +163,7 @@ trait CmsEndpoints
 	/**
 	 * Publish items in a Collection.
 	 *
-	 * @param array<int,string|CollectionItem> $itemIds
+	 * @param array<int, (string | CollectionItem)> $itemIds
 	 *
 	 * @throws CollectionItemPublishingException
 	 */

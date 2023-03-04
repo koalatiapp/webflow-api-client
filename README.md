@@ -34,7 +34,7 @@ To install, use composer:
 composer require koalati/webflow-api-client
 ```
 
-## Usage
+## Getting started
 
 ### 1. Authenticate with Webflow
 
@@ -80,11 +80,14 @@ $client->publishSite($siteId);
 
 // List all collections for a site
 $collections = $client->listCollections($siteId);
+
+// Fetch and iterate over collection items
+$items = $client->listCollectionItems($collections[0]);
+foreach ($items as $item) {
+	echo $item->name . "\n";
+}
 ```
 
-For a complete list of available methods, check out the documentation below:
-
-@TODO: Document all available methods and models
 
 ### If you interact with a single website...
 
@@ -112,6 +115,67 @@ $client = new SiteClient($accessToken, "your-site-id");
 $domains = $client->listDomains();
 $collections = $client->listCollections();
 // etc...
+```
+
+## Usage
+
+### Pagination
+
+Endpoints that are paginated will return a `PaginatedList` instance. This will 
+prevent you from making more API calls than you really need to.
+
+The first page of results is always fetched to begin with. As you loop over the
+list, additional API calls will be made to load more data only when you 
+actually get to that point. 
+
+```php
+$items = $client->listCollectionItems('somecollectionid');
+
+foreach ($items as $item) {
+	// The first 100 items are already loaded.
+	// Once you reach the 101st item, an API call will be made automatically to load the next batch.
+	// Same thing one you reach the 201st item, and so on and so forth.
+}
+```
+
+If you prefer to fetch all of the data at the beginning, you can use the 
+`PaginatedList::fetchAll()` method, which loads all of the data and returns it
+as an array.
+
+Ex.:
+
+```php
+$itemList = $client->listCollectionItems('somecollectionid');
+$itemsArray = $itemList->fetchAll();
+
+var_dump($itemsArray);
+// array(561) { 
+//	[0]=> object(Koalati\Webflow\Model\CollectionItem)#1 (13) { ... } }
+//	[1]=> object(Koalati\Webflow\Model\CollectionItem)#2 (13) { ... } }
+//  ...
+//	[559]=> object(Koalati\Webflow\Model\CollectionItem)#560 (13) { ... } }
+//	[560]=> object(Koalati\Webflow\Model\CollectionItem)#561 (13) { ... } }
+// }
+```
+
+### Updating data
+
+Models that can be updated via the API, such as Collection Items and Users, 
+track their own changes: all you have to do to update them via their model 
+instance and call their update endpoint with the model once you're ready.
+
+Ex.:
+```php
+$item = $client->getCollectionItem('somecollectionid', 'someitemid');
+
+// Update the data on the model
+$item->setFieldValue('name', 'My Updated Item Name');
+$item->setFieldValue('some-custom-field', 'Another update value');
+
+// Make the API call - changes you made will be automatically detected and sent
+$updatedItem = $client->updateCollectionItem('somecollectionid', $item);
+
+// $updatedItem now holds the updated version of the item, as returned by Webflow's API.
 ```
 
 
