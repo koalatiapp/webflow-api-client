@@ -26,6 +26,12 @@ class PaginatedList implements Iterator
 	 */
 	public const LIMIT = 100;
 
+	/**
+	 * Total number of items in the list.
+	 * This includes items that haven't been loaded yet.
+	 */
+	public readonly int $total;
+
 	private int $currentItemIndex = 0;
 
 	/**
@@ -34,11 +40,6 @@ class PaginatedList implements Iterator
 	 * @var array<int,array<int,T>>
 	 */
 	private array $pages = [];
-
-	/**
-	 * Total number of pages in the list.
-	 */
-	private int $total = 0;
 
 	/**
 	 * The key that contains the list of data in raw responses.
