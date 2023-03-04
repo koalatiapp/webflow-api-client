@@ -92,8 +92,14 @@ trait CmsEndpoints
 	 */
 	public function updateCollectionItem(string|Collection $collectionId, CollectionItem $item, bool $publishImmediately): CollectionItem
 	{
+		$changeset = $item->getChangeset();
+
+		if (! $changeset) {
+			return $item;
+		}
+
 		$payload = [
-			'fields' => $item->getChangeset(),
+			'fields' => $changeset,
 		];
 		$url = "/collections/{$collectionId}/items/{$item}";
 
