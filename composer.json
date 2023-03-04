@@ -18,14 +18,16 @@
 		"phpunit/phpunit": "^10.0",
 		"phpmd/phpmd": "^2.13",
 		"phpstan/phpstan": "^1.9",
-		"symplify/easy-coding-standard": "^11.2"
+		"symplify/easy-coding-standard": "^11.2",
+		"rector/rector": "^0.15.19"
 	},
 	"suggest": {
         "koalati/oauth2-webflow": "Provides the Webflow OAuth 2.0 service provider for `league/oauth2-client`."
     },
 	"scripts": {
 		"test": "phpunit -c .config/phpunit.xml",
-		"check": "composer ecs:fix && composer phpmd && composer phpstan",
+		"check": "composer rector && composer ecs:fix && composer phpmd && composer phpstan",
+		"rector": "rector -c .config/rector.php",
 		"ecs": "ecs --config=.config/ecs.php",
 		"ecs:fix": "ecs --config=.config/ecs.php --fix",
 		"phpstan": "phpstan analyse src --level=8",
@@ -38,7 +40,8 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Koalati\\Tests\\Webflow\\": "tests/"
+			"Koalati\\Tests\\Webflow\\": "tests/",
+			"Koalati\\Utils\\Rector\\": "utils/rector/src/"
 		}
 	}
 }
