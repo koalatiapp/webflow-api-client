@@ -61,7 +61,7 @@ trait CmsEndpoints
 			CollectionItem::class,
 			"/collections/{$collectionId}/items",
 			[
-				'sort' => [$sortPrefix . $sortBy],
+				'sort[]' => $sortPrefix . $sortBy,
 			]
 		);
 	}

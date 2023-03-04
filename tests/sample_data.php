@@ -382,7 +382,7 @@ return [
 		],
 	],
 
-	'/collections/580e63fc8c9a982ac9b8b745/items?sort%5B0%5D=created-on' => [
+	'/collections/580e63fc8c9a982ac9b8b745/items?sort[]=created-on' => [
 		'GET' => [
 			'items' => [
 				[
