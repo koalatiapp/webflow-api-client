@@ -13,6 +13,16 @@ use Koalati\Webflow\Util\Date;
  */
 class User extends AbstractWebflowModel
 {
+	public const SORT_BY_STATUS = 'Status';
+
+	public const SORT_BY_EMAIL = 'Email';
+
+	public const SORT_BY_CREATED_ON = 'CreatedOn';
+
+	public const SORT_BY_UPDATED_ON = 'UpdatedOn';
+
+	public const SORT_BY_LAST_LOGIN = 'LastLogin';
+
 	public const STATUS_INVITED = 'invited';
 
 	public const STATUS_UNVERIFIED = 'unverified';

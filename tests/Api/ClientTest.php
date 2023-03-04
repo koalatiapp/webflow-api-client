@@ -22,9 +22,9 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
 		// Mock the API client's inner HttpClient
 		$mockResponses = include(__DIR__ . '/../sample_data.php');
-		$mockResponses['/sites/paginationtest/accessgroups'] = $this->generateRandomAccessGroupDataForPaginationTest(0, 205);
-		$mockResponses['/sites/paginationtest/accessgroups?offset=100'] = $this->generateRandomAccessGroupDataForPaginationTest(100, 205);
-		$mockResponses['/sites/paginationtest/accessgroups?offset=200'] = $this->generateRandomAccessGroupDataForPaginationTest(200, 205);
+		$mockResponses['/sites/paginationtest/accessgroups?sort=CreatedOn'] = $this->generateRandomAccessGroupDataForPaginationTest(0, 205);
+		$mockResponses['/sites/paginationtest/accessgroups?sort=CreatedOn&offset=100'] = $this->generateRandomAccessGroupDataForPaginationTest(100, 205);
+		$mockResponses['/sites/paginationtest/accessgroups?sort=CreatedOn&offset=200'] = $this->generateRandomAccessGroupDataForPaginationTest(200, 205);
 		$responseFactory = function (string $method, string $url) use ($mockResponses) {
 			$url = str_replace('https://api.webflow.com', '', $url);
 			return new MockResponse(json_encode($mockResponses[$url][$method]));

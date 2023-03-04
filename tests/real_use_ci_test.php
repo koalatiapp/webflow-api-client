@@ -21,6 +21,13 @@ $testSite = $client->getSite('63feb744e9d846589ba06c75');
 $collections = $client->listCollections();
 $testCollection = $client->getCollection($collections[0]->getId());
 
+// Loop over items to test paginated list
+$items = $client->listCollectionItems($testCollection);
+foreach ($items as $i => $item) {
+	$item->name = 'Test item #' . ($i + 1);
+	$client->updateCollectionItem($testCollection, $item, false);
+}
+
 // Create a test item
 $newItem = new CollectionItem(
 	name: 'Test item',
@@ -35,14 +42,8 @@ $newItem = new CollectionItem(
 	]
 );
 $createdItem = $client->createCollectionItem($testCollection, $newItem, true);
-$createdItem->name .= ' :)';
+$createdItem->name .= ' #' . ($items->total + 1);
 $client->updateCollectionItem($testCollection, $createdItem, true);
-
-// Loop over items to test paginated list
-$items = $client->listCollectionItems($testCollection);
-foreach ($items as $item) {
-	// Nothing to do
-}
 
 // Create a duplicate, then delete it
 $deletionTestItem = new CollectionItem(

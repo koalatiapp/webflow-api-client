@@ -14,6 +14,14 @@ use Koalati\Webflow\Util\Date;
  */
 class CollectionItem extends AbstractWebflowModel
 {
+	public const SORT_BY_CREATED_ON = 'created-on';
+
+	public const SORT_BY_UPDATED_ON = 'updated-on';
+
+	public const SORT_BY_PUBLISHED_ON = 'published-on';
+
+	public const SORT_BY_SLUG = 'slug';
+
 	/**
 	 * Date on which the item was created
 	 */

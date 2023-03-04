@@ -48,11 +48,22 @@ trait CmsEndpoints
 	/**
 	 * Get all items for a collection
 	 *
+	 * @param string $sortBy        Defines the field by which to sort the results.
+	 * 								Either a `CollectionItem::SORT_BY_` constant or the slug of a field from the collection.
+	 * @param string $sortDirection	Either `ASC` or `DESC`.
 	 * @return PaginatedList<CollectionItem>
 	 */
-	public function listCollectionItems(string|Collection $collectionId): PaginatedList
+	public function listCollectionItems(string|Collection $collectionId, string $sortBy = CollectionItem::SORT_BY_CREATED_ON, string $sortDirection = 'ASC'): PaginatedList
 	{
-		return $this->requestWithPagination(CollectionItem::class, "/collections/{$collectionId}/items");
+		$sortPrefix = strtoupper($sortDirection) === 'DESC' ? '-' : '';
+
+		return $this->requestWithPagination(
+			CollectionItem::class,
+			"/collections/{$collectionId}/items",
+			[
+				'sort[]' => $sortPrefix . $sortBy,
+			]
+		);
 	}
 
 	/**

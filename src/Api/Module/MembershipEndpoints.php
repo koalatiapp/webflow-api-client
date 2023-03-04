@@ -21,11 +21,22 @@ trait MembershipEndpoints
 	/**
 	 * Get a list of users for a site
 	 *
+	 * @param string $sortBy        Defines the field by which to sort the results.
+	 * 								Must be a `User::SORT_BY_` constant.
+	 * @param string $sortDirection	Either `ASC` or `DESC`.
 	 * @return PaginatedList<User>
 	 */
-	public function listUsers(string|Site $siteId): PaginatedList
+	public function listUsers(string|Site $siteId, string $sortBy = User::SORT_BY_CREATED_ON, string $sortDirection = 'ASC'): PaginatedList
 	{
-		return $this->requestWithPagination(User::class, "/sites/{$siteId}/users");
+		$sortPrefix = strtoupper($sortDirection) === 'DESC' ? '-' : '';
+
+		return $this->requestWithPagination(
+			User::class,
+			"/sites/{$siteId}/users",
+			[
+				'sort' => $sortPrefix . $sortBy,
+			]
+		);
 	}
 
 	/**
@@ -104,6 +115,8 @@ trait MembershipEndpoints
 	 */
 	public function listAccessGroups(string|Site $siteId): PaginatedList
 	{
-		return $this->requestWithPagination(AccessGroup::class, "/sites/{$siteId}/accessgroups");
+		return $this->requestWithPagination(AccessGroup::class, "/sites/{$siteId}/accessgroups", [
+			'sort' => 'CreatedOn',
+		]);
 	}
 }
