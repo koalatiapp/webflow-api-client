@@ -158,11 +158,14 @@ class SiteClient
 	/**
 	 * Get all items for a collection
 	 *
+	 * @param string $sortBy        Defines the field by which to sort the results.
+	 * 								Either a `CollectionItem::SORT_BY_` constant or the slug of a field from the collection.
+	 * @param string $sortDirection	Either `ASC` or `DESC`.
 	 * @return PaginatedList<CollectionItem>
 	 */
-	public function listCollectionItems(Collection|string $collectionId): PaginatedList
+	public function listCollectionItems(Collection|string $collectionId, string $sortBy = 'created-on', string $sortDirection = 'ASC'): PaginatedList
 	{
-		return $this->client->listCollectionItems($collectionId);
+		return $this->client->listCollectionItems($collectionId, $sortBy, $sortDirection);
 	}
 
 	/**
