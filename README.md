@@ -24,7 +24,7 @@ If you would like to help, check out the [Contributing](#contributing) section b
 
 ## Requirements
 
-This package requires PHP `8.0` or above.
+This package requires PHP `8.1` or above.
 
 
 ## Installation
