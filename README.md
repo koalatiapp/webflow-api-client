@@ -86,6 +86,34 @@ For a complete list of available methods, check out the documentation below:
 
 @TODO: Document all available methods and models
 
+### If you interact with a single website...
+
+If you interact with a single Webflow site, you can use the `SiteClient` 
+instead of the basic `Client` to make your code a bit cleaner.
+
+Both clients offer the exact same feature (`Client` is actually used internally
+by the `SiteClient`), but it saves you from having to pass the site ID with 
+every call.
+
+Here is an example:
+
+```php
+<?php
+
+use Koalati\Webflow\Api\SiteClient;
+
+// Fetch your access token 
+// @TODO: change this to get the token from where you stored it.
+$accessToken = getenv("WEBFLOW_API_ACCESS_TOKEN");
+
+// Instanciate the API client
+$client = new SiteClient($accessToken, "your-site-id");
+
+$domains = $client->listDomains();
+$collections = $client->listCollections();
+// etc...
+```
+
 
 ## Contributing
 
