@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Koalati\Webflow\Api\Client;
+use Koalati\Webflow\Api\SiteClient;
 use Koalati\Webflow\Model\Cms\CollectionItem;
 
 // The API access token is passed as the 1st CLI argument
@@ -13,12 +13,12 @@ $accessToken = $argv[1];
 // The current commit hash is passed as the 2nd CLI argument
 $commitHash = $argv[2] ?? 'none';
 
-$client = new Client($accessToken);
+$client = new SiteClient($accessToken, '63feb744e9d846589ba06c75');
 $sites = $client->listSites();
-$testSite = $client->getSite($sites[0]->getId());
+$testSite = $client->getSite('63feb744e9d846589ba06c75');
 
 // List all collections for a site
-$collections = $client->listCollections($testSite);
+$collections = $client->listCollections();
 $testCollection = $client->getCollection($collections[0]->getId());
 
 // Create a test item
@@ -55,11 +55,11 @@ $deletionTestItem = $client->createCollectionItem($testCollection, $deletionTest
 $client->removeCollectionItem($testCollection, $deletionTestItem, false);
 
 // Membership user tests
-$accessGroups = $client->listAccessGroups($testSite);
-$users = $client->listUsers($testSite);
-$user = $client->getUser($testSite, $users[0]->id);
+$accessGroups = $client->listAccessGroups();
+$users = $client->listUsers();
+$user = $client->getUser($users[0]->id);
 $user->setData('country', ($user->data['country'] ?? null) === 'Canada' ? 'Wonderland' : 'Canada');
-$client->updateUser($testSite, $user);
+$client->updateUser($user);
 
 // Publish the site
-$client->publishSite($testSite);
+$client->publishSite();
