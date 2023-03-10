@@ -19,6 +19,9 @@ class Price
 	) {
 	}
 
+	/**
+	 * @param array<string,mixed> $data
+	 */
 	public static function createFromArray(array $data): self
 	{
 		return new self(
@@ -27,6 +30,9 @@ class Price
 		);
 	}
 
+	/**
+	 * @return array<string,mixed>
+	 */
 	public function toArray(): array
 	{
 		return [

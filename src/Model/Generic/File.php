@@ -16,6 +16,9 @@ class File
 	) {
 	}
 
+	/**
+	 * @param array<string,mixed> $data
+	 */
 	public static function createFromArray(array $data): self
 	{
 		return new self(
@@ -25,6 +28,9 @@ class File
 		);
 	}
 
+	/**
+	 * @return array<string,mixed>
+	 */
 	public function toArray(): array
 	{
 		return [
