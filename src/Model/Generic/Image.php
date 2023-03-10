@@ -27,8 +27,9 @@ class Image
 	public static function createFromArray(array $data): self
 	{
 		return new self(
-			$data['unit'],
-			$data['value'],
+			$data['url'],
+			$data['fileId'],
+			$data['alt'] ?? null,
 		);
 	}
 

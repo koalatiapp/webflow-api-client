@@ -20,8 +20,6 @@ class SKU extends AbstractWebflowModel
 
 	public const BILLING_METHOD_SUBSCRIPTION = 'subscription';
 
-	private const NON_FIELD_KEYS = ['updated-on', 'updated-by', 'created-on', 'created-by', 'published-on', 'published-by', '_cid', '_id', 'product', 'name', 'slug', 'price', 'sku', 'main-image', 'more-images', 'download-files', 'compare-at-price', 'ec-sku-billing-method', 'ec-sku-subscription-plan', 'weight', 'width', 'height', 'length', 'sku-values', '_archived', '_draft'];
-
 	public ?string $id = null;
 
 	public readonly string $productId;
@@ -29,32 +27,32 @@ class SKU extends AbstractWebflowModel
 	/**
 	 * Date on which the sku was created
 	 */
-	public ?DateTimeInterface $createdOn;
+	public ?DateTimeInterface $createdOn = null;
 
 	/**
 	 * ID of the user who created the sku
 	 */
-	public ?string $createdBy;
+	public ?string $createdBy = null;
 
 	/**
 	 * Date on which the sku was last updated
 	 */
-	public ?DateTimeInterface $updatedOn;
+	public ?DateTimeInterface $updatedOn = null;
 
 	/**
 	 * ID of the user who last updated the sku
 	 */
-	public ?string $updatedBy;
+	public ?string $updatedBy = null;
 
 	/**
 	 * Date on which the sku was last published
 	 */
-	public ?DateTimeInterface $publishedOn;
+	public ?DateTimeInterface $publishedOn = null;
 
 	/**
 	 * ID of the user who last published the sku
 	 */
-	public ?string $publishedBy;
+	public ?string $publishedBy = null;
 
 	private ?string $collectionId = null;
 
@@ -82,7 +80,6 @@ class SKU extends AbstractWebflowModel
 	 * @param null|integer|float|null $width			Width of the product.
 	 * @param null|integer|float|null $height			Height of the product.
 	 * @param null|integer|float|null $length			Length of the product.
-	 * @param array<string,mixed> $fields				Custom fields for the product.
 	 * @param array<string,string> $skuValues			Values for each option of the product (option value IDs, indexed by option ID).
 	 * @param boolean $archived							Whether the product is archived or not.
 	 * @param boolean $draft							Whether the product is a draft or not.
@@ -105,7 +102,6 @@ class SKU extends AbstractWebflowModel
 		public null|int|float $width = null,
 		public null|int|float $height = null,
 		public null|int|float $length = null,
-		public array $fields = [],
 		public array $skuValues = [],
 		public bool $archived = false,
 		public bool $draft = false,
@@ -128,16 +124,6 @@ class SKU extends AbstractWebflowModel
 	 */
 	public static function createFromArray(array $data): self
 	{
-		$fields = [];
-
-		foreach ($data as $key => $value) {
-			if (in_array($key, self::NON_FIELD_KEYS, true)) {
-				continue;
-			}
-
-			$fields[$key] = $value;
-		}
-
 		$sku = new self(
 			productId: $data['product'],
 			name: $data['name'] ?? null,
@@ -154,7 +140,6 @@ class SKU extends AbstractWebflowModel
 			width: $data['width'] ?? null,
 			height: $data['height'] ?? null,
 			length: $data['length'] ?? null,
-			fields: $fields,
 			skuValues: $data['sku-values'] ?? [],
 			archived: $data['_archived'] ?? false,
 			draft: $data['_draft'] ?? false,
@@ -205,23 +190,12 @@ class SKU extends AbstractWebflowModel
 			'_id' => $this->id,
 		];
 
-		foreach ($this->fields as $key => $value) {
-			$data[$key] = $value;
-		}
-
 		return $data;
 	}
 
 	public function getId(): ?string
 	{
 		return $this->id;
-	}
-
-	public function setField(string $key, mixed $value): self
-	{
-		$this->fields[$key] = $value;
-
-		return $this;
 	}
 
 	/**
@@ -234,11 +208,6 @@ class SKU extends AbstractWebflowModel
 		$changes = [];
 
 		foreach ($this->getNonMetadataFields() as $key => $value) {
-			// Ignore metadata fields
-			if (in_array($key, ['updated-on', 'updated-by', 'created-on', 'created-by', 'published-on', 'published-by', '_cid', '_id'], true)) {
-				continue;
-			}
-
 			if (! isset($this->initialData[$key]) || $value !== $this->initialData[$key]) {
 				$changes[$key] = $value;
 			}

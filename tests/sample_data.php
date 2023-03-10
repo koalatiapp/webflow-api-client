@@ -579,6 +579,7 @@ return [
 			'items' => [
 				[
 					'product' => [
+						'tax-category' => 'standard-taxable',
 						'shippable' => true,
 						'_archived' => false,
 						'_draft' => false,
@@ -679,11 +680,13 @@ return [
 
 		'POST' => [
 			'product' => [
+				'tax-category' => 'standard-taxable',
 				'shippable' => true,
 				'_archived' => false,
 				'_draft' => false,
 				'name' => 'Cloak Of Invisibility',
 				'ec-product-type' => 'ff42fee0113744f693a764e3431a9cc2',
+				'categories' => [],
 				'sku-properties' => [
 					[
 						'id' => 'a37a7991f7ca1be0d349a805a2bddb5b',
@@ -767,11 +770,13 @@ return [
 			'items' => [
 				[
 					'product' => [
+						'tax-category' => 'standard-taxable',
 						'shippable' => true,
 						'_archived' => false,
 						'_draft' => false,
 						'name' => 'Cloak Of Invisibility',
 						'ec-product-type' => 'ff42fee0113744f693a764e3431a9cc2',
+						'categories' => [],
 						'sku-properties' => [
 							[
 								'id' => 'a37a7991f7ca1be0d349a805a2bddb5b',
@@ -855,6 +860,10 @@ return [
 							'published-by' => null,
 							'_cid' => '5dd44c493543b37d5449b383',
 							'_id' => '5e8518536e147040726cc416',
+							'ec-sku-billing-method' => 'one-time',
+							'compare-at-price' => null,
+							'ec-sku-subscription-plan' => null,
+							'sku' => null,
 						],
 					],
 				],
